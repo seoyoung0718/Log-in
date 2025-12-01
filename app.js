@@ -36,6 +36,12 @@ sequelize
 const authRouter = require("./src/routes/auth");
 app.use("/auth", authRouter);
 
+// 사용자 정보 전달
+app.use((req, res, next) => {
+  res.locals.user = req.user || null;
+  next();
+});
+
 app.listen(3000, () => {
   console.log("🚀 Server running on http://localhost:3000");
 });
