@@ -1,3 +1,10 @@
+const express = require("express");
+const bcrypt = require("bcrypt");
+const passport = require("passport");
+const { User } = require("../models");
+
+const router = express.Router();
+
 // 회원가입 처리 라우터
 router.post("/signup", async (req, res) => {
   const { email, password, nickname } = req.body;
