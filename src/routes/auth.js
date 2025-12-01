@@ -27,3 +27,5 @@ router.post(
     failureRedirect: "/auth/login",
   })
 );
+
+module.exports = router;
