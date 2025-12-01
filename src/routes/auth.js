@@ -28,4 +28,16 @@ router.post(
   })
 );
 
+// 카카오 로그인 요청
+router.get("/kakao", passport.authenticate("kakao"));
+
+// 카카오 로그인 후 콜백
+router.get(
+  "/kakao/callback",
+  passport.authenticate("kakao", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  })
+);
+
 module.exports = router;

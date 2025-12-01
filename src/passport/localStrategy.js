@@ -11,21 +11,25 @@ module.exports = (passport) => {
       },
       async (email, password, done) => {
         try {
-          const user = await User.findOne({ where: { email } });
-          if (!user) {
-            return done(null, false, {
-              message: "존재하지 않는 이메일입니다.",
-            });
+          const exUser = await User.findOne({
+            where: { email, provider: "local" },
+          });
+
+          if (!exUser) {
+            return done(null, false, { message: "가입된 이메일이 없습니다." });
           }
 
-          const isMatch = await bcrypt.compare(password, user.password);
-          if (!isMatch) {
-            return done(null, false, { message: "비밀번호가 틀렸습니다." });
+          const result = await bcrypt.compare(password, exUser.password);
+
+          if (result) {
+            return done(null, exUser);
           }
 
-          return done(null, user);
-        } catch (err) {
-          return done(err);
+          return done(null, false, {
+            message: "비밀번호가 일치하지 않습니다.",
+          });
+        } catch (error) {
+          return done(error);
         }
       }
     )
