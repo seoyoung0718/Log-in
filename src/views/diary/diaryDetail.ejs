@@ -39,16 +39,92 @@
       <div class="post-card <%= post.userId === user.id ? 'my-post' : '' %>">
         <div class="post-header">
           <span class="author"><%= post.User.nick %></span>
-          <span class="date"><%= post.createdAt.toLocaleString() %></span>
+          <div class="right-area">
+            <span class="date"><%= post.createdAt.toLocaleString() %></span>
+
+            <% if (post.userId === user.id) { %>
+            <button class="edit-btn">수정</button>
+            <% } %>
+          </div>
         </div>
 
-        <div class="post-content">
-          <%= post.content.replace(/\n/g, "<br />") %>
+        <div
+          class="post-content"
+          data-post-id="<%= post.id %>"
+          data-is-owner="<%= post.userId === user.id %>"
+        >
+          <!-- 보기 모드 -->
+          <div class="content-view">
+            <%= post.content.replace(/\n/g, "<br />") %>
+          </div>
+
+          <!-- 수정 모드 -->
+          <textarea class="content-edit hidden"><%= post.content %></textarea>
+
+          <div class="edit-buttons hidden">
+            <button class="save-btn">저장</button>
+            <button class="cancel-btn">취소</button>
+          </div>
         </div>
       </div>
+
       <% }) %>
     </div>
 
     <hr />
   </body>
+  <script>
+    document.querySelectorAll(".post-content").forEach((box) => {
+      const isOwner = box.dataset.isOwner === "true";
+      if (!isOwner) return;
+
+      const view = box.querySelector(".content-view");
+      const edit = box.querySelector(".content-edit");
+      const editBtn = box.parentElement.querySelector(".edit-btn");
+      const buttons = box.querySelector(".edit-buttons");
+      const postId = box.dataset.postId;
+
+      //  수정 버튼 클릭 → 수정 모드로 전환
+      editBtn.addEventListener("click", () => {
+        view.classList.add("hidden");
+        editBtn.classList.add("hidden");
+        edit.classList.remove("hidden");
+        buttons.classList.remove("hidden");
+        edit.focus();
+      });
+
+      //  취소 버튼 → 다시 보기 모드
+      buttons.querySelector(".cancel-btn").addEventListener("click", () => {
+        edit.classList.add("hidden");
+        buttons.classList.add("hidden");
+        view.classList.remove("hidden");
+        editBtn.classList.remove("hidden");
+
+        // 원래 내용 복구
+        edit.value = view.innerHTML.replace(/<br\s*\/?>/g, "\n");
+      });
+
+      //  저장 → 서버로 PUT 요청
+      buttons.querySelector(".save-btn").addEventListener("click", async () => {
+        const newContent = edit.value;
+
+        const res = await fetch(`/post/${postId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ content: newContent }),
+        });
+
+        if (res.ok) {
+          // 화면에 반영
+          view.innerHTML = newContent.replace(/\n/g, "<br />");
+          edit.classList.add("hidden");
+          buttons.classList.add("hidden");
+          view.classList.remove("hidden");
+          editBtn.classList.remove("hidden");
+        } else {
+          alert("수정 실패");
+        }
+      });
+    });
+  </script>
 </html>

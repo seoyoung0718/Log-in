@@ -49,12 +49,26 @@ body {
   font-style: italic;
 }
 
+.post-header .right-area {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.edit-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  background: #cfe4ff;
+  border: 1px solid #9ec7ff;
+  cursor: pointer;
+}
+
 /* 내용 - 손글씨 느낌을 주는 라인 높이 */
 .post-content {
   font-size: 17px;
   line-height: 1.9;
   color: #444;
-  white-space: pre-wrap;
   word-break: break-word;
 
   /* 줄 노트 느낌 옵션 (원하면 켜줄게) */
@@ -64,5 +78,45 @@ body {
     transparent 28px,
     rgba(0, 0, 0, 0.05) 29px
   );
-  padding-top: 5px;
+  padding-top: 5;
+}
+
+.hidden {
+  display: none;
+}
+
+.content-edit {
+  width: 100%;
+  height: 120px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+}
+.hidden {
+  display: none !important;
+}
+
+.edit-buttons button {
+  margin-top: 10px;
+  margin-right: 8px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #a4dd90;
+}
+
+.cancel-btn {
+  background: #ffb6b6;
+}
+
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
