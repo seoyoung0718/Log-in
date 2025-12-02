@@ -19,6 +19,11 @@ router.post("/signup", async (req, res) => {
   res.redirect("/auth/login");
 });
 
+// 로그인 페이지 렌더링
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
 // 로그인 처리 라우터
 router.post(
   "/login",

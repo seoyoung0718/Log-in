@@ -1,1 +1,32 @@
-<p>메인페이지</p>
+<link rel="stylesheet" href="/css/main.css" />
+
+<h2>내 다이어리</h2>
+
+<!-- 검색창 -->
+<form action="/diary/search" method="get">
+  <input type="text" name="keyword" placeholder="다이어리 제목 또는 ID 검색" />
+  <button type="submit">검색</button>
+</form>
+
+<!-- 다이어리 생성 버튼 -->
+<a href="/diary/create" class="btn-create">+ 새 다이어리 만들기</a>
+
+<hr />
+
+<!-- 다이어리 목록 -->
+<% const list = myDiaries || []; %>
+
+<% if (list.length === 0) { %>
+  <p>아직 가입된 다이어리가 없습니다.</p>
+<% } %>
+
+<% list.forEach(member => { %>
+  <div class="diary-card">
+    <a href="/diary/<%= member.Diary.id %>">
+      <div class="cover"></div>
+      <p class="title"><%= member.Diary.title %></p>
+    </a>
+  </div>
+<% }) %>
+
+</div>

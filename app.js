@@ -10,6 +10,7 @@ const app = express();
 // 뷰 엔진
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src", "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // body 파서
 app.use(express.urlencoded({ extended: false }));
@@ -38,15 +39,17 @@ app.use((req, res, next) => {
 
 // DB 연결 및 테이블 생성
 sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => console.log("데이터베이스 연결 성공 ✅"))
   .catch((err) => console.error("데이터베이스 연결 실패 ❌", err));
 
 // 라우터 연결
 const pageRouter = require("./src/routes/page");
 const authRouter = require("./src/routes/auth");
+const diaryRouter = require("./src/routes/diary");
 app.use("/", pageRouter);
 app.use("/auth", authRouter);
+app.use("/diary", diaryRouter);
 
 // 9. 서버 시작
 app.listen(3000, () => {

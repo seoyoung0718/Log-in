@@ -1,0 +1,28 @@
+.diary-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.diary-card {
+  width: 150px;
+  text-align: center;
+}
+
+.cover {
+  width: 150px;
+  height: 200px;
+  background: #f7d7a9;
+  border: 2px solid #d3a56b;
+  border-radius: 5px;
+}
+
+.btn-create {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: #2e73fc;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}

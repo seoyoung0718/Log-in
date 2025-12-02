@@ -7,6 +7,7 @@ module.exports = (passport) => {
       {
         clientID: process.env.KAKAO_ID,
         callbackURL: "/auth/kakao/callback",
+        prompt: "login",
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
