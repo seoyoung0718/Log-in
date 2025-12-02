@@ -7,21 +7,36 @@ const router = express.Router();
 
 // 회원가입 처리 라우터
 router.post("/signup", async (req, res) => {
-  const { email, password, nickname } = req.body;
-  const hashed = await bcrypt.hash(password, 10);
+  const { email, password, password2, nick } = req.body;
 
-  await User.create({
-    email,
-    password: hashed,
-    nickname,
-  });
+  // 1) 비밀번호 검증
+  if (password !== password2) {
+    return res.status(400).send("비밀번호가 일치하지 않습니다.");
+  }
 
-  res.redirect("/auth/login");
-});
+  try {
+    // 2) 이메일 중복 확인
+    const exists = await User.findOne({ where: { email } });
+    if (exists) {
+      return res.status(400).send("이미 존재하는 이메일입니다.");
+    }
 
-// 로그인 페이지 렌더링
-router.get("/login", (req, res) => {
-  res.render("login");
+    // 3) 비밀번호 해싱
+    const hashed = await bcrypt.hash(password, 10);
+
+    // 4) 새 User 저장
+    await User.create({
+      email,
+      password: hashed,
+      nick,
+      provider: "local", // 일반 회원으로 설정
+    });
+
+    return res.redirect("/login");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("회원가입 실패");
+  }
 });
 
 // 로그인 처리 라우터
@@ -44,5 +59,15 @@ router.get(
     failureRedirect: "/login",
   })
 );
+
+// 로그아웃
+router.get("/logout", (req, res) => {
+  req.logout(() => {
+    req.session.destroy(() => {
+      res.clearCookie("connect.sid"); // 세션 쿠키 삭제
+      return res.redirect("/");
+    });
+  });
+});
 
 module.exports = router;
