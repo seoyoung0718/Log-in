@@ -14,19 +14,19 @@
 <hr />
 
 <!-- 다이어리 목록 -->
-<% const list = myDiaries || []; %>
-
-<% if (list.length === 0) { %>
-  <p>아직 가입된 다이어리가 없습니다.</p>
+<% const list = myDiaries || []; %> <% if (list.length === 0) { %>
+<p>아직 가입된 다이어리가 없습니다.</p>
 <% } %>
 
-<% list.forEach(member => { %>
+<div class="diary-list">
+  <% list.forEach(member => { %>
   <div class="diary-card">
     <a href="/diary/<%= member.Diary.id %>">
-      <div class="cover"></div>
-      <p class="title"><%= member.Diary.title %></p>
+      <div class="cover">
+        <span class="cover-title"><%= member.Diary.title %></span>
+      </div>
     </a>
+    <p class="description"><%= member.Diary.description %></p>
   </div>
-<% }) %>
-
+  <% }) %>
 </div>

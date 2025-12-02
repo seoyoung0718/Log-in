@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>다이어리 만들기</title>
+  </head>
+
+  <body>
+    <h2>다이어리 만들기</h2>
+
+    <form action="/diary/create" method="POST">
+      <div>
+        <label for="title">제목</label>
+        <input type="text" id="title" name="title" required />
+      </div>
+
+      <div>
+        <label for="description">설명</label>
+        <textarea
+          id="description"
+          name="description"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit">생성하기</button>
+    </form>
+  </body>
+</html>

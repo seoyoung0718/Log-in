@@ -2,13 +2,20 @@ module.exports = (sequelize, DataTypes) => {
   const DiaryMember = sequelize.define(
     "DiaryMember",
     {
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      diaryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       status: {
         type: DataTypes.ENUM("pending", "approved", "rejected"),
         allowNull: false,
-        // 기본값 제거! → 요청할 때 직접 넣도록
       },
       role: {
-        type: DataTypes.ENUM("member", "leader"),
+        type: DataTypes.ENUM("member", "owner"),
         allowNull: false,
         defaultValue: "member",
       },
