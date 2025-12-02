@@ -64,6 +64,20 @@ body {
   cursor: pointer;
 }
 
+.delete-btn {
+  background: #ffdddd;
+  border: 1px solid #ffbbbb;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 5px;
+  border-radius: 6px;
+}
+
+.delete-btn:hover {
+  background: #ffcccc;
+}
+
 /* 내용 - 손글씨 느낌을 주는 라인 높이 */
 .post-content {
   font-size: 17px;

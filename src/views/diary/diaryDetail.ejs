@@ -44,6 +44,7 @@
 
             <% if (post.userId === user.id) { %>
             <button class="edit-btn">수정</button>
+            <button class="delete-btn">삭제</button>
             <% } %>
           </div>
         </div>
@@ -82,6 +83,7 @@
       const edit = box.querySelector(".content-edit");
       const editBtn = box.parentElement.querySelector(".edit-btn");
       const buttons = box.querySelector(".edit-buttons");
+      const deleteBtn = box.parentElement.querySelector(".delete-btn");
       const postId = box.dataset.postId;
 
       //  수정 버튼 클릭 → 수정 모드로 전환
@@ -123,6 +125,23 @@
           editBtn.classList.remove("hidden");
         } else {
           alert("수정 실패");
+        }
+      });
+
+      //  삭제 버튼 → 서버로 DELETE 요청
+      deleteBtn.addEventListener("click", async () => {
+        if (!confirm("정말 삭제할까요?")) return;
+
+        const res = await fetch(`/post/${postId}`, {
+          method: "DELETE",
+          credentials: "include",
+        });
+
+        if (res.ok) {
+          // DOM에서 카드 삭제
+          box.parentElement.remove();
+        } else {
+          alert("삭제 실패");
         }
       });
     });
