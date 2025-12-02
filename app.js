@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const { sequelize } = require("./src/models");
+const expressLayouts = require("express-ejs-layouts");
 require("dotenv").config();
 
 const app = express();
@@ -11,6 +12,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src", "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(expressLayouts);
+app.set("layout", "layout");
 
 // body 파서
 app.use(express.urlencoded({ extended: false }));

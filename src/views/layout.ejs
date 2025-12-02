@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 공통 CSS -->
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+
+    <title>Diary Service</title>
+  </head>
+
+  <body>
+    <!-- 공통 네비게이션 -->
+    <header class="header">
+      <div class="logo">
+        <a href="/">📘 Diary</a>
+      </div>
+
+      <nav class="nav">
+        <% if (user) { %>
+        <span class="nickname"><%= user.nick %>님</span>
+        <a href="/auth/logout">로그아웃</a>
+        <% } else { %>
+        <a href="/auth/login">로그인</a>
+        <a href="/auth/signup">회원가입</a>
+        <!-- 수정됨 -->
+        <% } %>
+      </nav>
+    </header>
+
+    <main class="container"><%- body %></main>
+
+    <!-- 공통 footer -->
+    <footer class="footer">
+      <p>© 2025 Diary Service</p>
+    </footer>
+  </body>
+</html>
