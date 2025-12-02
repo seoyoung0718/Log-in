@@ -50,9 +50,11 @@ sequelize
 const pageRouter = require("./src/routes/page");
 const authRouter = require("./src/routes/auth");
 const diaryRouter = require("./src/routes/diary");
+const postRouter = require("./src/routes/post");
 app.use("/", pageRouter);
 app.use("/auth", authRouter);
 app.use("/diary", diaryRouter);
+app.use("/post", postRouter);
 
 // 9. 서버 시작
 app.listen(3000, () => {

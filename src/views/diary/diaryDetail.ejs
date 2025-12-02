@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <link rel="stylesheet" href="../css/diaryDetail.css" />
   <head>
     <meta charset="UTF-8" />
     <title><%= diary.title %> - 다이어리</title>
@@ -33,18 +34,21 @@
     <!-- 게시글 목록 -->
     <h3>게시글</h3>
 
-    <% if (diary.Posts.length === 0) { %>
-    <p>아직 글이 없습니다.</p>
-    <% } %> <% diary.Posts.forEach(p => { %>
-    <div>
-      <a href="/post/<%= p.id %>">
-        <h4><%= p.title %></h4>
-      </a>
-      <p><%= p.content.substring(0, 50) %>...</p>
-      <small><%= p.createdAt.toLocaleString() %></small>
+    <div class="posts-container">
+      <% diary.Posts.forEach(post => { %>
+      <div class="post-card <%= post.userId === user.id ? 'my-post' : '' %>">
+        <div class="post-header">
+          <span class="author"><%= post.User.nick %></span>
+          <span class="date"><%= post.createdAt.toLocaleString() %></span>
+        </div>
+
+        <div class="post-content">
+          <%= post.content.replace(/\n/g, "<br />") %>
+        </div>
+      </div>
+      <% }) %>
     </div>
 
     <hr />
-    <% }) %>
   </body>
 </html>

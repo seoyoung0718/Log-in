@@ -1,0 +1,68 @@
+/* 전체 배경을 약간 종이 느낌으로  */
+body {
+  background: #faf7f2; /* 베이지 종이색 */
+  font-family: "Pretendard", sans-serif;
+}
+
+/* 일기 전체 컨테이너 */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+/* 일기 1개 = 페이지 카드 */
+.post-card {
+  width: 90%;
+  background: #fffdf8; /* 더 밝은 종이색 */
+  padding: 25px 30px;
+  border-radius: 12px;
+  border: 1px solid #e4dccc;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* 종이 텍스처 효과 */
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+
+  background-size: cover;
+}
+
+/* 내가 쓴 일기면 오른쪽 정렬 + 색 느낌 조금 변경 */
+.my-post {
+  margin-left: auto;
+  background: #fffaf0;
+  border-color: #dfd3b8;
+}
+
+/* 낙관 느낌 */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #8b7d6d;
+  font-style: italic;
+}
+
+/* 내용 - 손글씨 느낌을 주는 라인 높이 */
+.post-content {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #444;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  /* 줄 노트 느낌 옵션 (원하면 켜줄게) */
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 28px,
+    rgba(0, 0, 0, 0.05) 29px
+  );
+  padding-top: 5px;
+}

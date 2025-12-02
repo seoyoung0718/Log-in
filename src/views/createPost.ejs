@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>게시글 작성</h2>
+
+  <form action="/post" method="POST">
+    <input type="hidden" name="diaryId" value="<%= diaryId %>" />
+
+    <div class="form-group">
+      <label>제목</label>
+      <input
+        type="text"
+        name="title"
+        placeholder="제목을 입력하세요"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>내용</label>
+      <textarea
+        name="content"
+        placeholder="내용을 입력하세요"
+        required
+      ></textarea>
+    </div>
+
+    <button type="submit">작성하기</button>
+  </form>
+</div>

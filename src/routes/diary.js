@@ -54,6 +54,7 @@ router.get("/:id", isLoggedIn, async (req, res) => {
         },
         {
           model: Post,
+          include: [{ model: User }],
           order: [["createdAt", "DESC"]],
         },
       ],

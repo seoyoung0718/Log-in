@@ -4,6 +4,11 @@ const { Diary, DiaryMember } = require("../models");
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+  console.log("🔥 현재 로그인 사용자:", req.user);
+  next();
+});
+
 // 메인 페이지 - 로그인 여부로 분기
 router.get("/", async (req, res) => {
   // 로그인 안 한 경우
