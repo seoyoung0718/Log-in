@@ -1,17 +1,36 @@
-<form action="/auth/login" method="POST">
-  <div>
-    <label>이메일</label>
-    <input type="email" name="email" required />
-  </div>
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>로그인</title>
+    <link rel="stylesheet" href="/css/login.css" />
+  </head>
 
-  <div>
-    <label>비밀번호</label>
-    <input type="password" name="password" required />
-  </div>
+  <body class="login-page">
+    <div class="login-page-wrapper">
+      <div class="login-container">
+        <div class="login-title">Log-in</div>
 
-  <button>로그인</button>
-</form>
+        <form action="/auth/login" method="POST">
+          <div class="form-group">
+            <label>이메일</label>
+            <input type="email" name="email" required />
+          </div>
 
-<a href="/auth/kakao">
-  <button>카카오 로그인</button>
-</a>
+          <div class="form-group">
+            <label>비밀번호</label>
+            <input type="password" name="password" required />
+          </div>
+
+          <button class="btn-submit">로그인</button>
+        </form>
+
+        <div class="divider">또는</div>
+
+        <a href="/auth/kakao">
+          <button class="kakao-btn">카카오로 로그인</button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

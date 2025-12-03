@@ -3,8 +3,13 @@ body {
   padding: 0;
   font-family: "Noto Sans KR", sans-serif;
   background: #fafafa;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 전체 화면을 기준으로 레이아웃 */
 }
 
+/* 상단 메뉴 */
 .header {
   display: flex;
   justify-content: space-between;
@@ -20,13 +25,17 @@ body {
   margin-left: 10px;
 }
 
+/* 본문: 남은 공간을 채움 */
 .container {
   max-width: 900px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px;
-  min-height: 70vh;
+
+  flex: 1; /* footer 위까지 꽉 채우는 핵심 */
 }
 
+/* 푀터 */
 .footer {
   text-align: center;
   padding: 20px;
