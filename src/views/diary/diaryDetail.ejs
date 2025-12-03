@@ -21,7 +21,13 @@
     </ul>
 
     <hr />
-
+    <% if (diary.DiaryMembers.some(m => m.userId === user.id && m.role ===
+    "owner")) { %>
+    <a href="/diary/<%= diary.id %>/members" class="manage-btn">
+      가입 요청 관리
+    </a>
+    <% } %>
+    <hr />
     <!-- 글쓰기 버튼 (멤버만 가능) -->
     <% if (isMember) { %>
     <a href="/post/create/<%= diary.id %>">+ 새 글쓰기</a>

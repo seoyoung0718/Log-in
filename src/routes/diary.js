@@ -62,9 +62,14 @@ router.get("/:id", isLoggedIn, async (req, res) => {
       include: [
         {
           model: DiaryMember,
+          where: { status: "approved" },
+          required: false,
           include: [{ model: User, attributes: ["id", "nick"] }],
         },
-        { model: Post },
+        {
+          model: Post,
+          include: [{ model: User, attributes: ["id", "nick"] }],
+        },
       ],
     });
 
@@ -102,7 +107,7 @@ router.get("/:id", isLoggedIn, async (req, res) => {
     console.error(err);
     res.status(500).send("Error");
   }
-}); // ★★★★★ 여기 닫기!!
+});
 
 // 다이어리 가입 신청
 router.post("/:id/join", isLoggedIn, async (req, res) => {
@@ -129,6 +134,61 @@ router.post("/:id/join", isLoggedIn, async (req, res) => {
     console.error(err);
     res.status(500).send("가입 신청 오류");
   }
+});
+
+router.get("/:id/members", isLoggedIn, async (req, res) => {
+  const diaryId = req.params.id;
+
+  const me = await DiaryMember.findOne({
+    where: { diaryId, userId: req.user.id },
+  });
+
+  if (!me || me.role !== "owner") {
+    return res.status(403).send("권한이 없습니다.");
+  }
+
+  const pendingMembers = await DiaryMember.findAll({
+    where: { diaryId, status: "pending" },
+    include: [{ model: User, attributes: ["nick"] }],
+  });
+
+  res.render("diary/diaryMembers", { pendingMembers, diaryId });
+});
+
+// 승인 라우터
+router.post("/:id/members/:memberId/approve", isLoggedIn, async (req, res) => {
+  const diaryId = req.params.id;
+  const memberId = req.params.memberId;
+
+  const me = await DiaryMember.findOne({
+    where: { diaryId, userId: req.user.id },
+  });
+
+  if (!me || me.role !== "owner") {
+    return res.status(403).send("권한이 없습니다.");
+  }
+
+  await DiaryMember.update({ status: "approved" }, { where: { id: memberId } });
+
+  res.redirect(`/diary/${diaryId}/members`);
+});
+
+// 거절 라우터
+router.post("/:id/members/:memberId/reject", isLoggedIn, async (req, res) => {
+  const diaryId = req.params.id;
+  const memberId = req.params.memberId;
+
+  const me = await DiaryMember.findOne({
+    where: { diaryId, userId: req.user.id },
+  });
+
+  if (!me || me.role !== "owner") {
+    return res.status(403).send("권한이 없습니다.");
+  }
+
+  await DiaryMember.update({ status: "rejected" }, { where: { id: memberId } });
+
+  res.redirect(`/diary/${diaryId}/members`);
 });
 
 module.exports = router;

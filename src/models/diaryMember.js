@@ -29,9 +29,6 @@ module.exports = (sequelize, DataTypes) => {
   DiaryMember.associate = (models) => {
     DiaryMember.belongsTo(models.User, { foreignKey: "userId" });
     DiaryMember.belongsTo(models.Diary, { foreignKey: "diaryId" });
-
-    models.Diary.hasMany(DiaryMember, { foreignKey: "diaryId" });
-    models.User.hasMany(DiaryMember, { foreignKey: "userId" });
   };
 
   return DiaryMember;

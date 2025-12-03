@@ -1,0 +1,29 @@
+<h2>가입 요청 목록</h2>
+
+<% if (pendingMembers.length === 0) { %>
+<p>대기 중인 가입 요청이 없습니다.</p>
+<% } else { %>
+<ul>
+  <% pendingMembers.forEach(m => { %>
+  <li>
+    <%= m.User.nick %>
+
+    <form
+      action="/diary/<%= diaryId %>/members/<%= m.id %>/approve"
+      method="POST"
+    >
+      <button type="submit">승인</button>
+    </form>
+
+    <form
+      action="/diary/<%= diaryId %>/members/<%= m.id %>/reject"
+      method="POST"
+    >
+      <button type="submit">거절</button>
+    </form>
+  </li>
+  <% }) %>
+</ul>
+<% } %>
+
+<a href="/diary/<%= diaryId %>">← 다이어리로 돌아가기</a>
