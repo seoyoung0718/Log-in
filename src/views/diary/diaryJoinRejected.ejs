@@ -1,0 +1,6 @@
+<h2><%= diary.title %></h2>
+<p>가입이 거절되었습니다. 다시 신청하려면 아래 버튼을 눌러주세요.</p>
+
+<form action="/diary/<%= diary.id %>/join" method="POST">
+  <button type="submit">다시 신청하기</button>
+</form>

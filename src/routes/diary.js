@@ -57,7 +57,6 @@ router.get("/:id", isLoggedIn, async (req, res) => {
   const diaryId = req.params.id;
 
   try {
-    // 1) 다이어리 기본 정보
     const diary = await Diary.findOne({
       where: { id: diaryId },
       include: [
@@ -65,31 +64,70 @@ router.get("/:id", isLoggedIn, async (req, res) => {
           model: DiaryMember,
           include: [{ model: User, attributes: ["id", "nick"] }],
         },
-        {
-          model: Post,
-          include: [{ model: User }],
-          order: [["createdAt", "DESC"]],
-        },
+        { model: Post },
       ],
     });
 
     if (!diary) {
-      return res.status(404).send("해당 다이어리가 없습니다.");
+      return res.status(404).send("해당 다이어리를 찾을 수 없습니다.");
     }
 
-    // 2) 현재 접속한 유저가 이 다이어리 멤버인지 확인
-    const isMember = await DiaryMember.findOne({
-      where: { diaryId, userId: req.user.id, status: "approved" },
+    // 현재 사용자 가입 상태
+    const member = await DiaryMember.findOne({
+      where: { diaryId, userId: req.user.id },
     });
 
-    res.render("diary/diaryDetail", {
+    // 1) 가입 안 함
+    if (!member) {
+      return res.render("diary/diaryJoin", { diary });
+    }
+
+    // 2) 대기중
+    if (member.status === "pending") {
+      return res.render("diary/diaryJoinPending", { diary });
+    }
+
+    // 3) 거절됨
+    if (member.status === "rejected") {
+      return res.render("diary/diaryJoinRejected", { diary });
+    }
+
+    // 4) 승인됨 → 상세조회 허용
+    return res.render("diary/diaryDetail", {
       diary,
-      isMember: !!isMember,
       user: req.user,
+      isMember: true,
     });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error");
+  }
+}); // ★★★★★ 여기 닫기!!
+
+// 다이어리 가입 신청
+router.post("/:id/join", isLoggedIn, async (req, res) => {
+  const diaryId = req.params.id;
+
+  try {
+    const exists = await DiaryMember.findOne({
+      where: { diaryId, userId: req.user.id },
+    });
+
+    if (exists) {
+      return res.send("이미 신청했거나 가입되어 있습니다.");
+    }
+
+    await DiaryMember.create({
+      diaryId,
+      userId: req.user.id,
+      role: "member",
+      status: "pending",
+    });
+
+    res.redirect(`/diary/${diaryId}`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("가입 신청 오류");
   }
 });
 
