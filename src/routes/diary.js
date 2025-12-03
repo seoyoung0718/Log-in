@@ -6,15 +6,28 @@ const { Op } = Sequelize;
 
 // 다이어리 검색
 router.get("/search", isLoggedIn, async (req, res) => {
-  const keyword = req.query.keyword;
+  const keyword = (req.query.keyword || "").trim();
 
-  const diaries = await Diary.findAll({
-    where: {
-      title: { [Op.like]: `%${keyword}%` },
-    },
-  });
+  // 1) 빈값 입력 방지
+  if (!keyword) {
+    return res.render("searchResult", { diaries: [], keyword });
+  }
 
-  res.render("searchResult", { diaries });
+  try {
+    const diaries = await Diary.findAll({
+      where: {
+        title: {
+          [Op.like]: `%${keyword}%`,
+        },
+      },
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.render("searchResult", { diaries, keyword });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("검색 오류");
+  }
 });
 
 // 다이어리 생성 페이지

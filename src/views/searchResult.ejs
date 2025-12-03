@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/main.css" />
+<h2>"<%= keyword %>" 검색 결과</h2>
+
+<% if (diaries.length === 0) { %>
+<p>검색 결과가 없습니다.</p>
+<% } %>
+
+<div class="diary-list">
+  <% diaries.forEach(diary => { %>
+  <div class="diary-card">
+    <a href="/diary/<%= diary.id %>">
+      <div class="cover">
+        <span class="cover-title"><%= diary.title %></span>
+      </div>
+      <p><%= diary.description %></p>
+    </a>
+  </div>
+  <% }) %>
+</div>
