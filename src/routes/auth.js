@@ -39,17 +39,12 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// 로그인 페이지
-router.get("/login", (req, res) => {
-  res.render("login");
-});
-
 // 로그인 처리 라우터
 router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/auth/login",
+    failureRedirect: "/login",
   })
 );
 

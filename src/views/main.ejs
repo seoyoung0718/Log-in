@@ -14,7 +14,9 @@
 <hr />
 
 <!-- 다이어리 목록 -->
-<% const list = myDiaries || []; %> <% if (list.length === 0) { %>
+<% const list = myDiaries || []; %> <% if (!user) { %>
+<p>로그인 후 이용해주세요.</p>
+<% } else if (list.length === 0) { %>
 <p>아직 가입된 다이어리가 없습니다.</p>
 <% } %>
 

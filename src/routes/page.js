@@ -1,13 +1,10 @@
+// 고급웹프로그래밍 기말프로젝트 김서영 60221302
+
 const express = require("express");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
 const { Diary, DiaryMember } = require("../models");
 
 const router = express.Router();
-
-router.use((req, res, next) => {
-  console.log("🔥 현재 로그인 사용자:", req.user);
-  next();
-});
 
 // 메인 페이지 - 로그인 여부로 분기
 router.get("/", async (req, res) => {
@@ -35,4 +32,8 @@ router.get("/login", isNotLoggedIn, (req, res) => {
   res.render("login");
 });
 
+// 다이어리 생성 페이지
+router.get("/diary/create", isLoggedIn, (req, res) => {
+  res.render("diary/createDiary");
+});
 module.exports = router;

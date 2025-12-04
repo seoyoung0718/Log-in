@@ -30,11 +30,6 @@ router.get("/search", isLoggedIn, async (req, res) => {
   }
 });
 
-// 다이어리 생성 페이지
-router.get("/create", isLoggedIn, (req, res) => {
-  res.render("diary/createDiary");
-});
-
 // 다이어리 생성 처리
 router.post("/create", isLoggedIn, async (req, res) => {
   const { title, description } = req.body;
