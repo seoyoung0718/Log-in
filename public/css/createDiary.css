@@ -1,0 +1,91 @@
+/* 전체 배경 */
+body {
+  background: #f4f1ea;
+  font-family: "Pretendard", sans-serif;
+  margin-top: 0;
+  padding-top: 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* 다이어리 표지 (심플 버전) */
+.cover {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 380px;
+  padding: 40px 30px;
+
+  background: #f5efe6; /* 부드러운 베이지 */
+  border: 2px solid #d4c2a8;
+  border-radius: 8px;
+
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* 표지 제목 */
+.cover h2 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #5b4636;
+  margin-bottom: 25px;
+}
+
+/* 라벨 */
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6d5748;
+}
+
+/* input / textarea */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+
+  background: #faf7f2;
+  border: 1px solid #d2c6b8;
+  border-radius: 6px;
+
+  color: #5b4636;
+  font-family: inherit;
+
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* textarea 높이 */
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* 버튼 */
+button {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 12px;
+
+  background: #2e73fc;
+  color: white;
+
+  border: none;
+  border-radius: 6px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #1f5ee0;
+}
