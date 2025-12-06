@@ -1,5 +1,3 @@
-console.log("🔥 post 라우터 로딩됨!");
-
 const express = require("express");
 const router = express.Router();
 const { Post } = require("../models");
