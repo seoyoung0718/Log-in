@@ -1,3 +1,5 @@
+// 김서영_60221302_고급웹final
+
 const express = require("express");
 const router = express.Router();
 const { Diary, DiaryMember, User, Post, Sequelize } = require("../models");

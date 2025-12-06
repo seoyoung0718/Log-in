@@ -1,3 +1,5 @@
+// 김서영_60221302_고급웹final
+
 const express = require("express");
 const router = express.Router();
 const { Post } = require("../models");
@@ -13,10 +15,12 @@ router.post("/", isLoggedIn, async (req, res) => {
   try {
     const { diaryId, title, content } = req.body;
 
+    // 필수값 체크
     if (!title || !content) {
       return res.status(400).json({ message: "제목과 내용을 입력하세요." });
     }
 
+    // 새 게시글 등록
     const post = await Post.create({
       diaryId,
       userId: req.user.id,
@@ -40,6 +44,7 @@ router.put("/:id", isLoggedIn, async (req, res) => {
       return res.status(404).json({ message: "게시글 없음" });
     }
 
+    // 작성자 본인만 수정 가능
     if (post.userId !== req.user.id) {
       return res.status(403).json({ message: "수정 권한 없음" });
     }
@@ -65,6 +70,7 @@ router.delete("/:id", isLoggedIn, async (req, res) => {
       return res.status(404).json({ message: "게시글 없음" });
     }
 
+    // 작성자 본인만 삭제 가능
     if (post.userId !== req.user.id) {
       return res.status(403).json({ message: "삭제 권한 없음" });
     }

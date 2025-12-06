@@ -1,4 +1,4 @@
-// 고급웹프로그래밍 기말프로젝트 김서영 60221302
+// 김서영_60221302_고급웹final
 
 const express = require("express");
 const { isLoggedIn, isNotLoggedIn } = require("./middlewares");
