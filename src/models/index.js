@@ -1,3 +1,5 @@
+// 김서영_60221302_고급웹final
+
 "use strict";
 
 const Sequelize = require("sequelize");

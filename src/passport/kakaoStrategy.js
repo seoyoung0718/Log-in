@@ -1,3 +1,6 @@
+// 김서영_60221302_고급웹final
+
+// Passport 카카오 로그인 전략 설정 파일
 const KakaoStrategy = require("passport-kakao").Strategy;
 const { User } = require("../models");
 
@@ -5,12 +8,13 @@ module.exports = (passport) => {
   passport.use(
     new KakaoStrategy(
       {
-        clientID: process.env.KAKAO_ID,
-        callbackURL: "/auth/kakao/callback",
-        prompt: "login",
+        clientID: process.env.KAKAO_ID, // 카카오 REST API 키
+        callbackURL: "/auth/kakao/callback", // 로그인 후 리다이렉트 URI
+        prompt: "login", // 항상 카카오 로그인 창 띄우기
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          // 기존에 카카오로 가입한 유저 있는지 조회
           const exUser = await User.findOne({
             where: { snsId: profile.id, provider: "kakao" },
           });
