@@ -23,19 +23,16 @@
     </ul>
 
     <hr />
-    <% if (diary.DiaryMembers.some(m => m.userId === user.id && m.role ===
-    "owner")) { %>
-    <a href="/diary/<%= diary.id %>/members" class="manage-btn">
-      가입 요청 관리
-    </a>
-    <% } %>
-    <hr />
-    <!-- 글쓰기 버튼 (멤버만 가능) -->
-    <% if (isMember) { %>
-    <a href="/post/create/<%= diary.id %>">+ 일기쓰기</a>
-    <% } else { %>
-    <p>멤버가 아니라 글 작성이 불가능합니다.</p>
-    <% } %>
+    <div class="action-buttons">
+      <% if (diary.DiaryMembers.some(m => m.userId === user.id && m.role ===
+      "owner")) { %>
+      <a href="/diary/<%= diary.id %>/members" class="manage-btn"
+        >가입 요청 관리</a
+      >
+      <% } %> <% if (isMember) { %>
+      <a href="/post/create/<%= diary.id %>" class="write-btn">+ 일기쓰기</a>
+      <% } %>
+    </div>
 
     <hr />
 
@@ -56,6 +53,7 @@
             <% } %>
           </div>
         </div>
+        <h4 class="post-title"><%= post.title %></h4>
 
         <div
           class="post-content"
@@ -64,7 +62,7 @@
         >
           <!-- 보기 모드 -->
           <div class="content-view">
-            <%= post.content.replace(/\n/g, "<br />") %>
+            <%- post.content.replace(/\n/g, "<br />") %>
           </div>
 
           <!-- 수정 모드 -->

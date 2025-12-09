@@ -1,4 +1,9 @@
 /* 김서영_60221302_고급웹final */
+
+a {
+  text-decoration: none;
+}
+
 /* 포스트잇 두 개 묶는 상단 영역 */
 .postit-wrap {
   position: absolute;
@@ -109,7 +114,7 @@
 }
 
 .diary-card {
-  width: 160px;
+  /* width: 160px; */
   text-align: center;
   margin: 0 auto;
 }
@@ -126,6 +131,7 @@
   align-items: center;
   justify-content: center;
   padding: 15px;
+  font-family: "Nanum Pen Script", cursive;
 }
 
 .cover::before {
@@ -141,13 +147,19 @@
 }
 
 .cover-title {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 600;
   color: #5b4636;
   text-align: center;
   line-height: 1.4;
   padding: 0 5px;
   word-break: keep-all;
+}
+
+.description {
+  width: 193px;
+  font-size: 17px;
+  font-family: "Nanum Pen Script", cursive;
 }
 
 .btn-create {

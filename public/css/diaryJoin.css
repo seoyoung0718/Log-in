@@ -1,0 +1,17 @@
+/* ‘새 다이어리 만들기’ 버튼 */
+button {
+  border: none; /* 기본 border 제거 */
+  outline: none;
+  padding: 12px 20px;
+  background: #2e73fc;
+
+  color: white;
+  text-decoration: none;
+  border-radius: 32px; /* → 검색 버튼과 통일감 */
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+}

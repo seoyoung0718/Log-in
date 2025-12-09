@@ -1,5 +1,103 @@
 /* 김서영_60221302_고급웹final */
 
+/* 다이어리 제목 (h2) */
+h2 {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 34px;
+  color: #4a3d33;
+  margin-top: 30px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* 다이어리 설명 */
+.diary-desc,
+p {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 22px;
+  line-height: 1.7;
+  color: #5a4b3d;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* 멤버 제목 */
+h3 {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 28px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #4a3d33;
+}
+
+/* 멤버 목록 리스트 */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 25px auto;
+  max-width: 600px;
+}
+
+ul li {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 20px;
+  color: #5a4b3d;
+  padding: 6px 0;
+  text-align: center;
+}
+
+/* 버튼 2개를 가로로 나란히 배치 */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* 버튼 사이 여백 */
+  margin: 25px 0 35px 0;
+}
+
+/* 가입요청관리 버튼 (위에서 만든 디자인 살림) */
+.manage-btn {
+  padding: 10px 20px;
+  background: #2e73fc;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+}
+
+.manage-btn:hover {
+  background: #1d65e3;
+}
+
+/* 일기쓰기 버튼도 동일 톤으로 유지 */
+.write-btn {
+  padding: 10px 22px;
+  background: #ffb04d;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 28px;
+  font-size: 15px;
+
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+}
+
+.write-btn:hover {
+  background: #ff9a24;
+}
+
+hr {
+  border: 0;
+  border-top: 1px dashed #d6c8b5; /* 점선 노트 느낌 */
+  width: 80%;
+  margin: 30px auto;
+}
+
 /* 전체 배경을 약간 종이 느낌으로  */
 body {
   background: #faf7f2; /* 베이지 종이색 */
@@ -85,7 +183,6 @@ body {
   font-size: 17px;
   line-height: 1.9;
   color: #444;
-  word-break: break-word;
 
   /* 줄 노트 느낌 옵션 (원하면 켜줄게) */
   background: repeating-linear-gradient(
@@ -135,4 +232,12 @@ body {
   display: flex;
   gap: 10px;
   margin-top: 10px;
+}
+
+.post-title {
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 26px;
+  color: #4a3d33;
+  margin: 10px 0 18px 0;
+  text-align: left;
 }

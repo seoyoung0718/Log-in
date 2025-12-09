@@ -1,4 +1,5 @@
 <!-- 김서영_60221302_고급웹final -->
+<link rel="stylesheet" href="/css/diaryMembers.css" />
 
 <h2>가입 요청 목록</h2>
 
@@ -8,22 +9,25 @@
 <ul>
   <% pendingMembers.forEach(m => { %>
   <li>
-    <%= m.User.nick %>
+    <span class="nick"><%= m.User.nick %></span>
 
-    <form
-      action="/diary/<%= diaryId %>/members/<%= m.id %>/approve"
-      method="POST"
-    >
-      <button type="submit">승인</button>
-    </form>
+    <div class="btn-group">
+      <form
+        action="/diary/<%= diaryId %>/members/<%= m.id %>/approve"
+        method="POST"
+      >
+        <button type="submit" class="approve-btn">승인</button>
+      </form>
 
-    <form
-      action="/diary/<%= diaryId %>/members/<%= m.id %>/reject"
-      method="POST"
-    >
-      <button type="submit">거절</button>
-    </form>
+      <form
+        action="/diary/<%= diaryId %>/members/<%= m.id %>/reject"
+        method="POST"
+      >
+        <button type="submit" class="reject-btn">거절</button>
+      </form>
+    </div>
   </li>
+
   <% }) %>
 </ul>
 <% } %>

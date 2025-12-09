@@ -68,6 +68,7 @@ router.get("/:id", isLoggedIn, async (req, res) => {
           include: [{ model: User, attributes: ["id", "nick"] }],
         },
       ],
+      order: [[Post, "createdAt", "DESC"]],
     });
 
     if (!diary) {

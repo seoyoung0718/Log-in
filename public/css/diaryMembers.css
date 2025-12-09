@@ -1,0 +1,109 @@
+/* 김서영_60221302_고급웹final */
+
+/* 전체 배경 */
+body {
+  background: #faf7f2;
+  font-family: "Pretendard", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 페이지 제목 */
+h2 {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #4a3d33;
+}
+
+/* 안내 문구 */
+p {
+  font-size: 18px;
+  text-align: center;
+  color: #5a4b3d;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* 리스트 영역 */
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 650px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 리스트 아이템(가입 요청 카드) */
+li {
+  background: #fffdf8;
+  padding: 18px 25px;
+  border-radius: 12px;
+  border: 1px solid #e4dccc;
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 닉네임 */
+.nick {
+  font-size: 18px;
+  color: #4a3d33;
+}
+
+/* 버튼 그룹 (승인 / 거절을 붙여서 표시) */
+.btn-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 버튼 공통 */
+.btn-group button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+}
+
+/* 승인 버튼 */
+.approve-btn {
+  background: #a4dd90;
+  color: #2f4b2b;
+}
+.approve-btn:hover {
+  background: #92d37e;
+}
+
+/* 거절 버튼 */
+.reject-btn {
+  background: #ffb6b6;
+  color: #5a2e2e;
+}
+.reject-btn:hover {
+  background: #ff9d9d;
+}
+
+/* 돌아가기 링크 */
+a[href^="/diary"] {
+  display: block;
+  margin: 40px auto;
+  text-align: center;
+  font-size: 18px;
+  color: #4a3d33;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+a[href^="/diary"]:hover {
+  color: #2e73fc;
+}
