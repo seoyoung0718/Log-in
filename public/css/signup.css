@@ -50,7 +50,7 @@
 
 .form-group input {
   width: 100%;
-  padding: 12px;
+  padding: 12px 0;
   border: 1px solid #d0d7f2;
   border-radius: 8px;
   font-size: 14px;
