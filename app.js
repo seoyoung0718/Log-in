@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 
 // DB 연결 및 테이블 생성
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => console.log("데이터베이스 연결 성공 ✅"))
   .catch((err) => console.error("데이터베이스 연결 실패 ❌", err));
 

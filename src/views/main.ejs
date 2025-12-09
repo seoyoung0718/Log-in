@@ -1,20 +1,54 @@
 <!-- 김서영_60221302_고급웹final -->
-
+<link
+  href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap"
+  rel="stylesheet"
+/>
 <link rel="stylesheet" href="/css/main.css" />
 
-<h2>내 다이어리</h2>
+<div class="diary-spread">
+  <div class="page left-page">
+    <h1 class="hand-title">📓 Log-in</h1>
+    <p class="hand-sub">그룹 다이어리 웹 서비스</p>
+  </div>
 
-<!-- 검색창 -->
-<form action="/diary/search" method="get">
-  <input type="text" name="keyword" placeholder="다이어리 제목 또는 ID 검색" />
-  <button type="submit">검색</button>
-</form>
+  <div class="center-fold"></div>
 
-<!-- 다이어리 생성 버튼 -->
-<a href="/diary/create" class="btn-create">+ 새 다이어리 만들기</a>
+  <div class="page right-page">
+    <div class="postit-wrap">
+      <div class="postit post1">Log-in ✍️</div>
+      <div class="postit post2">그룹 다이어리 ⭐</div>
+    </div>
+    <p class="hand-text">
+      Log-in은 여러 사람이 함께 일기를 작성하고 공유할 수 있는 그룹 기반
+      다이어리 웹 서비스입니다. 가족, 친구들과 같은 공간에서 일상을 기록하고
+      서로 소통할 수 있도록 돕습니다.
+    </p>
+
+    <p class="hand-text">
+      Log는 ‘기록하다’를, in은 ‘함께 들어오다’를 뜻합니다. 즉, Log-in은 ‘함께
+      기록하는 공간’을 의미합니다.
+    </p>
+  </div>
+</div>
+
+<!-- 상단 액션 섹션 -->
+<div class="action-row">
+  <a href="/diary/create" class="btn-create">+ 새 다이어리 만들기</a>
+
+  <form action="/diary/search" method="get" class="search-box">
+    <input
+      type="text"
+      name="keyword"
+      placeholder="다이어리 제목 또는 ID 검색"
+      class="search-input"
+    />
+    <button type="submit" class="search-btn">검색</button>
+  </form>
+</div>
 
 <hr />
 
+<h2>내 다이어리</h2>
 <!-- 다이어리 목록 -->
 <% const list = myDiaries || []; %> <% if (!user) { %>
 <p>로그인 후 이용해주세요.</p>
